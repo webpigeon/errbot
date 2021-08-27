@@ -81,14 +81,20 @@ class Person(Identifier):
 
 
 class RoomOccupant(Identifier):
+    """
+    This repesents an instance of a person in a given room.
+
+    Most backends has a RoomOccupant that inherits from their Person class as well as this one.
+    """
 
     @property
-    @abstractmethod
     def person(self) -> Any:
         """
         :return: a backend specific unique identifier representing this room occpant.
         """
-        pass
+        if isinstance(self, Person):
+            return super(Person).person
+        raise NotImplementedError("You need to provide an implementation of person")
 
     @property
     @abstractmethod
