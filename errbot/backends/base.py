@@ -81,13 +81,20 @@ class Person(Identifier):
 
 
 class RoomOccupant(Identifier):
+
     @property
     @abstractmethod
-    def room(self) -> Any:  # this is oom defined below
+    def person(self) -> Any:
         """
-        Some backends have the full name of a user.
+        :return: a backend specific unique identifier representing this room occpant.
+        """
+        pass
 
-        :return: the fullname of this user if available.
+    @property
+    @abstractmethod
+    def room(self) -> Any:  # this should return a room subclass defined below
+        """
+        :return: a backend specific Room object representing the room this occpant is in.
         """
         pass
 
